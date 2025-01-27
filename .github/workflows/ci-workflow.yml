@@ -1,0 +1,25 @@
+name: CI Workflow  # Name of the workflow
+
+on:               # Define triggers
+  push:
+    branches:
+      - main      # Run when code is pushed to the main branch
+
+jobs:
+  build:          # Define a job called 'build'
+    runs-on: ubuntu-latest  # Runner environment (Linux)
+
+    steps:        # Steps in the job
+      - name: Checkout Code
+        uses: actions/checkout@v3  # Action to clone the repo
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16  # Node.js version
+
+      - name: Install Dependencies
+        run: npm install  # Install project dependencies
+
+      - name: Run Tests
+        run: npm test      # Run tests defined in the project
